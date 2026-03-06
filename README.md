@@ -35,3 +35,62 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 # ecommerce-nextjs
+ecommerce-nextjs-app/
+│
+├── .env.local                # MongoDB URI, API keys, secrets
+├── package.json
+├── tsconfig.json             # TypeScript config
+├── next.config.js
+├── public/                   # Static files (images, icons)
+│   └── products/
+│
+├── src/
+│   ├── app/                  # App Router pages
+│   │   ├── page.tsx          # Home page
+│   │   ├── products/         # Product pages
+│   │   │   ├── page.tsx      # List all products
+│   │   │   └── [id]/page.tsx # Product details page
+│   │   ├── cart/             # Shopping cart page
+│   │   │   └── page.tsx
+│   │   ├── checkout/
+│   │   │   └── page.tsx
+│   │   ├── profile/          # User profile
+│   │   │   └── page.tsx
+│   │   ├── admin/            # Admin dashboard
+│   │   │   ├── page.tsx
+│   │   │   ├── products/     # Admin: CRUD products
+│   │   │   ├── orders/       # Admin: manage orders
+│   │   │   └── users/        # Admin: manage users
+│   │   └── api/              # API routes
+│   │       ├── auth/         # Authentication routes
+│   │       │   ├── login/route.ts
+│   │       │   └── register/route.ts
+│   │       ├── products/route.ts
+│   │       ├── orders/route.ts
+│   │       └── users/route.ts
+│   │
+│   ├── components/           # Reusable components
+│   │   ├── Navbar.tsx
+│   │   ├── Footer.tsx
+│   │   ├── ProductCard.tsx
+│   │   ├── CartItem.tsx
+│   │   ├── AdminSidebar.tsx
+│   │   └── Loader.tsx
+│   │
+│   ├── lib/                  # Utilities, MongoDB connection
+│   │   └── mongodb.ts
+│   │
+│   ├── models/               # MongoDB schemas (if using Mongoose)
+│   │   ├── Product.ts
+│   │   ├── User.ts
+│   │   └── Order.ts
+│   │
+│   ├── services/             # Business logic, database queries
+│   │   ├── productService.ts
+│   │   ├── userService.ts
+│   │   └── orderService.ts
+│   │
+│   └── styles/               # Global CSS or Tailwind config
+│       └── globals.css
+│
+└── README.md
