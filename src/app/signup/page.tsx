@@ -1,13 +1,25 @@
 'use client'
-import {theme} from '../../styles/theme'
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import {Container,Paper,Box,Typography,TextField,Alert,Link as
-MuiLink,Button,RadioGroup,FormControlLabel,Radio,FormLabel,
-InputAdornment} from "@mui/material";
-import Link from 'next/link';
 import {inputSignupData} from "../staticData/authInputData"
 import AuthFormContainer from '@/components/AuthFormContainer';
+import {useFormik} from "formik";
+import { validationSchema } from '@/authValidations/signupValidtion';
+
 export default function SignUp() {
+    function submit(values: any) {
+    console.log("Sign up values:", values);
+    // call API or navigate
+    }
+     const formik =useFormik({
+        initialValues:{
+            name:"",
+            email:"",
+            password:"",
+            rePassword:"",
+        },
+        validationSchema,
+        onSubmit:submit,
+    })
     return(
         <AuthFormContainer 
         inputData={inputSignupData}
@@ -18,6 +30,7 @@ export default function SignUp() {
         fotterPar='Already have an account? '
         headerIcon={<PersonAddIcon/>}
         linkString='Login'
+        formik={formik}
         />
     )
 }

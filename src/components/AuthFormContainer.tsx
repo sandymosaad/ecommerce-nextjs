@@ -1,6 +1,5 @@
-import {Container,Paper,Box,Typography,TextField,Alert,Link as
-MuiLink,Button,RadioGroup,FormControlLabel,Radio,FormLabel,
-InputAdornment} from "@mui/material";
+import {Container,Paper,Box,Typography,TextField,Link as
+MuiLink,Button,InputAdornment} from "@mui/material";
 import {theme} from '../styles/theme'
 import Link from 'next/link';
 import {ReactNode} from "react";
@@ -8,12 +7,13 @@ import {ReactNode} from "react";
 interface AuthFormContainerProps{
     inputData:any[],
     headerIcon:ReactNode,
-    headerPar1:String,
-    headerPar2:String,
-    fotterPar:String,
-    fotterBtn:String,
-    linkString:String,
+    headerPar1:string,
+    headerPar2:string,
+    fotterPar:string,
+    fotterBtn:string,
+    linkString:string,
     fotterPath:string,
+    formik:any
 }
 export default function AuthFormContainer(
     {inputData,
@@ -24,12 +24,13 @@ export default function AuthFormContainer(
     fotterBtn,
     fotterPath,
     linkString,
+    formik
     }:AuthFormContainerProps) {
  return <Container maxWidth="sm">
             <Paper elevation={4} sx={{ p: 5, mt: 8, borderRadius: 3}}>
                 <Box
                 component="form"
-                //onSubmit={formik.handleSubmit}
+                onSubmit={formik.handleSubmit}
                 display="flex"
                 flexDirection="column"
                 gap={3}
@@ -55,6 +56,11 @@ export default function AuthFormContainer(
                         name={input.inputName}
                         type={input.inputType}
                         placeholder={input.placeholder}
+                        value={formik.values[input.inputName]}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        error={formik.touched[input.inputName] && Boolean(formik.errors[input.inputName])}
+                        helperText={formik.touched[input.inputName] && formik.errors[input.inputName]}
                         InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
@@ -64,6 +70,7 @@ export default function AuthFormContainer(
                         }}
                         sx={{ mb: 2 }}
                     />
+                    
                     );
                 })}
 
