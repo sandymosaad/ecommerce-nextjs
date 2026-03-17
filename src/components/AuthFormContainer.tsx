@@ -1,5 +1,9 @@
 import {Container,Paper,Box,Typography,TextField,Link as
-MuiLink,Button,InputAdornment} from "@mui/material";
+MuiLink,Button,InputAdornment,
+Radio,
+RadioGroup,
+FormControlLabel,
+FormLabel} from "@mui/material";
 import {theme} from '../styles/theme'
 import Link from 'next/link';
 import {ReactNode} from "react";
@@ -13,7 +17,8 @@ interface AuthFormContainerProps{
     fotterBtn:string,
     linkString:string,
     fotterPath:string,
-    formik:any
+    formik:any,
+    hasAccount:boolean
 }
 export default function AuthFormContainer(
     {inputData,
@@ -24,7 +29,8 @@ export default function AuthFormContainer(
     fotterBtn,
     fotterPath,
     linkString,
-    formik
+    formik,
+    hasAccount
     }:AuthFormContainerProps) {
  return <Container maxWidth="sm">
             <Paper elevation={4} sx={{ p: 5, mt: 8, borderRadius: 3}}>
@@ -70,10 +76,21 @@ export default function AuthFormContainer(
                         }}
                         sx={{ mb: 2 }}
                     />
-                    
                     );
                 })}
-
+                {!hasAccount && (
+                <>
+                    <FormLabel component="legend">Role</FormLabel>
+                    <RadioGroup
+                    name="role"
+                    value={formik.values.role}
+                    onChange={formik.handleChange}
+                    >
+                        <FormControlLabel value="admin" control={<Radio />} label="Admin" />
+                        <FormControlLabel value="user" control={<Radio />} label="User" />
+                    </RadioGroup>
+                </>
+                )}
                 <Button
                     variant="contained"
                     size="large"

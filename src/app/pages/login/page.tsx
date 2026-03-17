@@ -1,5 +1,5 @@
 'use client'
-import {inputLoginData} from "../staticData/authInputData"
+import {inputLoginData} from "../../staticData/authInputData"
 import LoginIcon from "@mui/icons-material/Login";
 import AuthFormContainer from '@/components/AuthFormContainer';
 import {validationSchema} from "@/authValidations/loginValidtion"
@@ -24,11 +24,12 @@ export default function Login() {
             headerPar1='Welcome Back'
             headerPar2='Sign in to your account'
             fotterBtn='Login'
-            fotterPath='/signup'
+            fotterPath='/pages/signup'
             fotterPar="Don't have an account? "
             headerIcon={<LoginIcon/>}
             linkString='Sign up'
             formik={formik}
+            hasAccount={true}
             />
         )
 }

@@ -9,7 +9,8 @@ export interface AuthInput {
   inputType: string;
   inputName: string;
   placeholder: string;
-  icon: SvgIconComponent; 
+  icon: SvgIconComponent;
+
 }
 
 export const inputLoginData: AuthInput[] = [
@@ -48,5 +49,5 @@ export const inputSignupData: AuthInput[] = [
     inputName: "rePassword",
     placeholder: "*********",
     icon: LockIcon,
-  },
+  }
 ];

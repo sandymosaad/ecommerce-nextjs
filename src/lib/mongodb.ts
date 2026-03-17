@@ -1,15 +1,13 @@
-import { MongoClient } from "mongodb";
+import mongoose from "mongoose";
 
 const uri = process.env.MONGODB_URI as string;
 
-let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
-
-if (!process.env.MONGODB_URI) {
+if (!uri) {
   throw new Error("Please add MONGODB_URI to .env.local");
 }
 
-client = new MongoClient(uri);
-clientPromise = client.connect();
+export default async function connectDB() {
+  if (mongoose.connection.readyState >= 1) return;
 
-export default clientPromise;
+  await mongoose.connect(uri);
+}
