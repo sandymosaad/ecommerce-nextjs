@@ -9,7 +9,6 @@ export async function POST(req: NextRequest) {
     const { name, email, password, role } = await req.json();
 
     //console.log("Received signup data:", { name, email, password, role });
-
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return NextResponse.json({ error: "Email already registered" }, { status: 400 });

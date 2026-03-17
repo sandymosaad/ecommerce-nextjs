@@ -4,12 +4,45 @@ import LoginIcon from "@mui/icons-material/Login";
 import AuthFormContainer from '@/components/AuthFormContainer';
 import {validationSchema} from "@/authValidations/loginValidtion"
 import {useFormik} from "formik";
+import { toast } from "sonner";
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
-    function submit(values: any) {
-       console.log("Login values:", values);
-    // call API or navigate
+    const router = useRouter()
+    async function submit(values: any) {
+    //console.log("Sign up values:", values);
+     await handleLogin({
+        email: values.email,
+        password: values.password,
+        })
     }
+   async function handleLogin(formData: { email: string; password: string }) {
+    try {
+        const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data?.error || "Login failed");
+
+        toast.success("Login successful!");
+
+        const role = data.user.role;
+
+        if (role === "admin") {
+        router.push("/admin-dashboard");
+        } else {
+        router.push("/products");
+        }
+
+    } catch (err: any) {
+        toast.error(err.message);
+    }
+    }
+
     const formik =useFormik({
         initialValues:{
             email:"",
