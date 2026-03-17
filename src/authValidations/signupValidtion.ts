@@ -16,7 +16,9 @@ const validationSchema = Yup.object({
         rePassword:Yup.string() 
         .required("Confirm password is required")
         .oneOf([Yup.ref("password")], "Passwords do not match"),
-       
+      
+        role: Yup.string()
+        .required("Please select a role")
     })
 
 export {validationSchema};

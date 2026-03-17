@@ -3,11 +3,12 @@ MuiLink,Button,InputAdornment,
 Radio,
 RadioGroup,
 FormControlLabel,
-FormLabel} from "@mui/material";
+FormLabel , IconButton} from "@mui/material";
 import {theme} from '../styles/theme'
 import Link from 'next/link';
 import {ReactNode} from "react";
-
+import { useState } from "react";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 interface AuthFormContainerProps{
     inputData:any[],
     headerIcon:ReactNode,
@@ -32,6 +33,12 @@ export default function AuthFormContainer(
     formik,
     hasAccount
     }:AuthFormContainerProps) {
+        const [showPasswords, setShowPasswords] = useState<{[key:string]:boolean}>({});
+
+        const handleClickShowPassword = (name:string) => {
+        setShowPasswords(prev => ({...prev, [name]: !prev[name]}));
+        };
+
  return <Container maxWidth="sm">
             <Paper elevation={4} sx={{ p: 5, mt: 8, borderRadius: 3}}>
                 <Box
@@ -53,29 +60,42 @@ export default function AuthFormContainer(
  
 
                 {inputData.map((input) => {
-                    const Icon = input.icon; 
+                    const Icon = input.icon;
+                    const isPassword = input.inputType === "password"; 
                     return (
-                    <TextField
-                        key={input.inputName}
-                        fullWidth
-                        label={input.label}
-                        name={input.inputName}
-                        type={input.inputType}
-                        placeholder={input.placeholder}
-                        value={formik.values[input.inputName]}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        error={formik.touched[input.inputName] && Boolean(formik.errors[input.inputName])}
-                        helperText={formik.touched[input.inputName] && formik.errors[input.inputName]}
-                        InputProps={{
+                  <TextField
+                    key={input.inputName}
+                    fullWidth
+                    label={input.label}
+                    name={input.inputName}
+                    type={isPassword && showPasswords[input.inputName] ? "text" : input.inputType} // here
+                    placeholder={input.placeholder}
+                    value={formik.values[input.inputName]}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched[input.inputName] && Boolean(formik.errors[input.inputName])}
+                    helperText={formik.touched[input.inputName] && formik.errors[input.inputName]}
+                    InputProps={{
                         startAdornment: (
-                            <InputAdornment position="start">
+                        <InputAdornment position="start">
                             <Icon />
-                            </InputAdornment>
+                        </InputAdornment>
                         ),
-                        }}
-                        sx={{ mb: 2 }}
+                        endAdornment: isPassword ? (
+                        <InputAdornment position="end">
+                            <IconButton
+                            onClick={() => handleClickShowPassword(input.inputName)}
+                            edge="end"
+                            size="small"
+                            >
+                            {showPasswords[input.inputName] ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                        </InputAdornment>
+                        ) : null
+                    }}
+                    sx={{ mb: 2 }}
                     />
+                    
                     );
                 })}
                 {!hasAccount && (
