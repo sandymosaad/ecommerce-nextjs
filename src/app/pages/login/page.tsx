@@ -29,7 +29,7 @@ export default function Login() {
         if (!res.ok) throw new Error(data?.error || "Login failed");
 
         toast.success("Login successful!");
-
+        localStorage.setItem("token", data.token);  
         const role = data.user.role;
 
         if (role === "admin") {

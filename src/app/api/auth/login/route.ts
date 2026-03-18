@@ -2,8 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import User from "@/models/User";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+
 
 export async function POST(req: NextRequest) {
+
    try{
     await connectDB();
     const {email, password}= await req.json();
@@ -18,8 +21,14 @@ export async function POST(req: NextRequest) {
     if (!isMatch) {
       return NextResponse.json({ error: "Wrong password" }, { status: 400 });
     }
+      const token = jwt.sign(
+      { userId: existingUser._id, role: existingUser.role },
+      process.env.JWT_SECRET!,
+      { expiresIn: "7d" }
+    );
     return NextResponse.json({
       message: "Logged in successfully",
+      token,
       user: {
         email: existingUser.email,
         role: existingUser.role,
