@@ -26,14 +26,30 @@ export async function POST(req: NextRequest) {
       process.env.JWT_SECRET!,
       { expiresIn: "7d" }
     );
-    return NextResponse.json({
+
+    const response = NextResponse.json({
       message: "Logged in successfully",
-      token,
       user: {
         email: existingUser.email,
         role: existingUser.role,
+        name: existingUser.name,
       },
     });
+
+    response.cookies.set("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      maxAge: 60 * 60 * 24 * 7,
+    });
+
+    response.cookies.set("name", existingUser.name, {
+      secure: true,
+      sameSite: "strict",
+      maxAge: 60 * 60 * 24 * 7,
+    });
+
+    return response;
     } catch (err: any) {
     return NextResponse.json(
       { error: err.message || "Login failed" },

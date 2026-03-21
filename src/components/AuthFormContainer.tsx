@@ -39,8 +39,8 @@ export default function AuthFormContainer(
         setShowPasswords(prev => ({...prev, [name]: !prev[name]}));
         };
 
- return <Container maxWidth="sm">
-            <Paper elevation={4} sx={{ p: 5, mt: 8, borderRadius: 3}}>
+ return <Container maxWidth="sm" sx={{mt:16}}>
+            <Paper elevation={4} sx={{ p: 4, mt: 7, borderRadius: 3}}>
                 <Box
                 component="form"
                 onSubmit={formik.handleSubmit}
@@ -115,7 +115,7 @@ export default function AuthFormContainer(
                     variant="contained"
                     size="large"
                     type="submit"
-                    sx={{ fontSize: 18, mt: 2 }}
+                    sx={{ fontSize: 18, mt: 1 }}
                 >
                     {fotterBtn}
                 </Button>

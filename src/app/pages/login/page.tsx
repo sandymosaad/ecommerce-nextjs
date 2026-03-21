@@ -6,6 +6,7 @@ import {validationSchema} from "@/authValidations/loginValidtion"
 import {useFormik} from "formik";
 import { toast } from "sonner";
 import { useRouter } from 'next/navigation';
+import Cookies from "js-cookie";
 
 export default function Login() {
     const router = useRouter()
@@ -25,13 +26,12 @@ export default function Login() {
         });
 
         const data = await res.json();
+        //console.log(data)
 
         if (!res.ok) throw new Error(data?.error || "Login failed");
-
         toast.success("Login successful!");
-        localStorage.setItem("token", data.token);  
         const role = data.user.role;
-
+        
         if (role === "admin") {
         router.push("/admin-dashboard");
         } else {
