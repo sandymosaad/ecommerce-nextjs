@@ -4,7 +4,7 @@ import Image from "next/image";
 import StarIcon from '@mui/icons-material/Star'; 
 
 
-interface featuredcardprops {
+interface FeaturedAndTrendingCardprops {
     item: {
         img: string;
         title: string;
@@ -12,7 +12,7 @@ interface featuredcardprops {
         price: string;
     }
 }
-export default function FeaturedCard({item}:featuredcardprops) {
+export default function FeaturedAndTrendingCard({item}:FeaturedAndTrendingCardprops) {
   return (
     <ImageListItem 
       component={Paper} 

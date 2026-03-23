@@ -1,10 +1,9 @@
 "use client";
-import { B, R } from '@faker-js/faker/dist/airline-Dz1uGqgJ';
 import ImageListItemCard from './ImageListItemCard';
 import { ImageList, Typography, useTheme, useMediaQuery, Box, Button } from '@mui/material';
-import FeaturedCard from './ImageFeaturedCard';
+import FeaturedAndTrendingCard from './FeaturedAndTrendingCard';
 
-interface ShopCategoriesProps {
+interface LandingPageCategoriesProps {
   itemData: { 
     img: string; 
     title: string; 
@@ -13,9 +12,9 @@ interface ShopCategoriesProps {
     price?: string 
   }[];
   title: React.ReactNode;
-  customComponent: "ImageListItemCard" | "FeaturedCard"; 
+  customComponent: "ImageListItemCard" | "FeaturedAndTrendingCard"; 
 }
-export default function ShopCategories({itemData , title ,customComponent}: ShopCategoriesProps) {
+export default function LandingPageCategories({itemData , title ,customComponent}: LandingPageCategoriesProps) {
   const theme = useTheme();
   
   const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // < 600px
@@ -44,7 +43,7 @@ export default function ShopCategories({itemData , title ,customComponent}: Shop
               item={{ img: item.img, title: item.title, category: item.category || "" }} 
             />
           ) : (
-            <FeaturedCard 
+            <FeaturedAndTrendingCard 
               key={item.img || index} 
               item={{ img: item.img, title: item.title, rate: item.rate || 0, price: item.price || "" }} 
             />

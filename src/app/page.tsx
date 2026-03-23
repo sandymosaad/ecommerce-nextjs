@@ -1,5 +1,5 @@
 import HeroHome from "@/components/HeroHome";
-import ShopCategories from "@/components/ShopCategories";
+import LandingPageCategories from "@/components/LandingPageCategories";
 import { categoriesData , featuredProducts, trendingProducts } from "./staticData/landingPageData";
 import StarIcon from '@mui/icons-material/Star'; 
 import { TrendingDown } from "@mui/icons-material";
@@ -9,11 +9,11 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return <>
       <HeroHome/>
-      <ShopCategories customComponent={"ImageListItemCard"} itemData={categoriesData} title="Shop by Category"/>
-      <ShopCategories customComponent={"FeaturedCard"} itemData={featuredProducts} 
+      <LandingPageCategories customComponent={"ImageListItemCard"} itemData={categoriesData} title="Shop by Category"/>
+      <LandingPageCategories customComponent={"FeaturedAndTrendingCard"} itemData={featuredProducts} 
       title={<><StarIcon sx={{ fontSize: 35, color: '#ffc107' }} /> Featured Products</>}
       />
-      <ShopCategories customComponent={"FeaturedCard"} itemData={trendingProducts} title={<><TrendingDown sx={{ fontSize: 35, color: '#ffc107' }} /> Trending Products</>}  />
+      <LandingPageCategories customComponent={"FeaturedAndTrendingCard"} itemData={trendingProducts} title={<><TrendingDown sx={{ fontSize: 35, color: '#ffc107' }} /> Trending Products</>}  />
       <Features/>
       <Footer/>
     </>;
