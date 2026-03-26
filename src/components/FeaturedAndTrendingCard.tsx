@@ -6,10 +6,12 @@ import StarIcon from '@mui/icons-material/Star';
 
 interface FeaturedAndTrendingCardprops {
     item: {
+        id?: number;
         img: string;
         title: string;
-        rate: number;
-        price: string;
+        rate?: number;
+        price?: string;
+        category?: string;
     }
 }
 export default function FeaturedAndTrendingCard({item}:FeaturedAndTrendingCardprops) {

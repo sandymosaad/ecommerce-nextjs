@@ -5,6 +5,7 @@ import Image from "next/image";
 
 interface ImageListItemCardProps {
   item: {
+    id?: number;
     img: string;
     title: string;
     category: string;

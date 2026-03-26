@@ -12,6 +12,7 @@ export interface Feature {
 }
 
 export interface Product {
+  id?: number;
   img: string;
   title: string;
   category?: string;
@@ -26,16 +27,21 @@ const categoriesData: { img: string; title: string; category: string }[] = [
   { img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8', title: 'Hats', category: 'Fashion' },
 ];
 const featuredProducts: Product[] = [
-  { img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d', title: 'Burger', rate: 4.5, price: '$12.99' },
-  { img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45', title: 'Camera', rate: 4.2, price: '$15.99' },
-  { img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c', title: 'Coffee', rate: 4.1, price: '$3.99' },
-  { img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8', title: 'Hats', rate: 4.0, price: '$8.99' },
+  { img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d', title: 'Burger', rate: 4.5, price: '$12.99' , id:1 },
+  { img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45', title: 'Camera', rate: 4.2, price: '$15.99' , id:2 },
+  { img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c', title: 'Coffee', rate: 4.1, price: '$3.99' , id:3 },
+  { img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8', title: 'Hats', rate: 4.0, price: '$8.99' , id:4 },
+  { img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d', title: 'Burger', rate: 4.5, price: '$12.99' , id:5 },
+  { img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45', title: 'Camera', rate: 4.2, price: '$15.99' , id:6 },
+  { img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c', title: 'Coffee', rate: 4.1, price: '$3.99' , id:7 },
+  { img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8', title: 'Hats', rate: 4.0, price: '$8.99' , id:8},
+
 ];
 const trendingProducts: Product[] = [
-  { img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d', title: 'Burger', rate: 4.5, price: '$12.99' },
-  { img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45', title: 'Camera', rate: 4.2, price: '$15.99' },
-  { img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c', title: 'Coffee', rate: 4.1, price: '$3.99' },
-  { img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8', title: 'Hats', rate: 4.0, price: '$8.99' },
+  { img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d', title: 'Burger', rate: 4.5, price: '$12.99' , id:1 },
+  { img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45', title: 'Camera', rate: 4.2, price: '$15.99' , id:2 },
+  { img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c', title: 'Coffee', rate: 4.1, price: '$3.99' , id:3 },
+  { img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8', title: 'Hats', rate: 4.0, price: '$8.99' , id:4 },
 ];
 
 const features: Feature[] = [
