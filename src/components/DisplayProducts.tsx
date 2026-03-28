@@ -25,7 +25,7 @@ export default function DisplayProducts() {
         }
         fetchProducts();
     }, []);
-  // Get products for the current page
+
   const startIndex = (page - 1) * itemsPerPage;
   const currentProducts = products.slice(startIndex, startIndex + itemsPerPage);
 
@@ -33,7 +33,7 @@ export default function DisplayProducts() {
     setPage(value);
   };
     return <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' , gap:4 }}>
-        <SortProducts/>
+        <SortProducts products={products} setProducts={setProducts}/>
 
       <ImageList sx={{ gap: 24, width: '100%' }} cols={cols}>
             {currentProducts.map((item, index) => (
@@ -45,7 +45,7 @@ export default function DisplayProducts() {
               ) 
             ))}
       </ImageList>
-      
+
       {products.length > itemsPerPage && (
         <Stack alignItems="center" mt={2}>
           <Pagination
