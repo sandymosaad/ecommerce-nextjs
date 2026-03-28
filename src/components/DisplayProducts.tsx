@@ -1,12 +1,12 @@
 "use client";
 
-import {Box, ImageList, useMediaQuery, useTheme } from "@mui/material";
-import { featuredProducts } from "../app/staticData/landingPageData";
+import { Box, ImageList, useMediaQuery, useTheme, Pagination, Stack } from "@mui/material";
 import FeaturedAndTrendingCard from "./FeaturedAndTrendingCard";
 import SortProducts from "./SortProducts";
 import { getProducts } from "@/services/productService";
 import { useEffect, useState } from "react";
 import {Product} from "@/interfaces/Product";
+
 export default function DisplayProducts() {
    const theme = useTheme();
     
@@ -15,6 +15,8 @@ export default function DisplayProducts() {
     const cols = isMobile ? 1 : isTablet ? 2 : 4;
 
     const [products, setProducts] = useState<Product[]>([]);
+      const [page, setPage] = useState(1);
+      const itemsPerPage = 8;
 
     useEffect(() => {
         async function fetchProducts() {
@@ -23,12 +25,18 @@ export default function DisplayProducts() {
         }
         fetchProducts();
     }, []);
+  // Get products for the current page
+  const startIndex = (page - 1) * itemsPerPage;
+  const currentProducts = products.slice(startIndex, startIndex + itemsPerPage);
 
+  const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
     return <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' , gap:4 }}>
         <SortProducts/>
 
       <ImageList sx={{ gap: 24, width: '100%' }} cols={cols}>
-            {products.map((item, index) => (
+            {currentProducts.map((item, index) => (
               (
                 <FeaturedAndTrendingCard 
                   key={item._id || index} 
@@ -37,7 +45,17 @@ export default function DisplayProducts() {
               ) 
             ))}
       </ImageList>
-     
+      
+      {products.length > itemsPerPage && (
+        <Stack alignItems="center" mt={2}>
+          <Pagination
+            count={Math.ceil(products.length / itemsPerPage)}
+            page={page}
+            onChange={handlePageChange}
+            color="primary"
+          />
+        </Stack>
+      )}
    </Box>
 }
 
