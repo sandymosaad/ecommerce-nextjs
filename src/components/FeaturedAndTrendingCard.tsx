@@ -10,7 +10,7 @@ interface FeaturedAndTrendingCardprops {
         img: string;
         title: string;
         rate?: number;
-        price?: string;
+        price: number ;
         category?: string;
     }
 }
@@ -42,6 +42,9 @@ export default function FeaturedAndTrendingCard({item}:FeaturedAndTrendingCardpr
           src={item.img}
           alt={item.title}
           fill
+          sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 25vw"
+          quality={95}
+          unoptimized
           style={{
             objectFit: 'cover',
             transition: '0.5s ease',
@@ -76,7 +79,7 @@ export default function FeaturedAndTrendingCard({item}:FeaturedAndTrendingCardpr
           justifyContent: 'space-between' 
         }}>
           <Typography variant="h6" color="primary.main" fontWeight="bold">
-            {item.price}
+            ${item.price.toFixed(2)}
           </Typography>
           
           <Button 

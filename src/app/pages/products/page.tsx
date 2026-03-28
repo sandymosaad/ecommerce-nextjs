@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import Filter from "@/components/Filter";
 import DisplayProducts from "@/components/DisplayProducts";
+
 export default function page() {
   return (
 
@@ -15,7 +16,7 @@ export default function page() {
         </Box>
         <Box sx={{ display: 'flex', gap: 4, flexDirection: { xs: 'column', md: 'row' } }}>
             <Filter />
-            <DisplayProducts />
+            <DisplayProducts  />
         </Box>
     </Box>
   )

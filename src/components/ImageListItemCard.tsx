@@ -31,6 +31,9 @@ export default function ImageListItemCard({ item }: ImageListItemCardProps) {
           src={item.img}
           alt={item.title}
           fill
+          sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 25vw"
+          quality={95}
+          unoptimized
           style={{
             objectFit: 'cover',
             transition: '0.3s',

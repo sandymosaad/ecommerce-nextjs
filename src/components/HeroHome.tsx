@@ -30,7 +30,7 @@ export default function HeroHome() {
         </Box>
 
         <Box sx={{ mt: 10 }}>
-          <Image src={cart} alt="cart" width={350} quality={100} />
+          <Image src={cart} alt="cart" width={350} quality={95} />
         </Box>
     </Box>
   );
