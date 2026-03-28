@@ -1,20 +1,20 @@
 "use client";
 
-import { Box, ImageList, useMediaQuery, useTheme, Pagination, Stack } from "@mui/material";
+import { Box,Typography, ImageList, useMediaQuery, useTheme, Pagination, Stack } from "@mui/material";
 import FeaturedAndTrendingCard from "./FeaturedAndTrendingCard";
 import SortProducts from "./SortProducts";
 import { getProducts } from "@/services/productService";
 import { useEffect, useState } from "react";
 import {Product} from "@/interfaces/Product";
 
-export default function DisplayProducts() {
+export default function DisplayProducts({ products, setProducts }:
+   { products: Product[], setProducts: (products: Product[]) => void }) {
    const theme = useTheme();
     
     const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // < 600px
     const isTablet = useMediaQuery(theme.breakpoints.down('md')); // < 900px
     const cols = isMobile ? 1 : isTablet ? 2 : 4;
 
-    const [products, setProducts] = useState<Product[]>([]);
       const [page, setPage] = useState(1);
       const itemsPerPage = 8;
 
@@ -55,6 +55,11 @@ export default function DisplayProducts() {
             color="primary"
           />
         </Stack>
+      )}
+      {products.length === 0 && (
+        <Typography variant="h6" align="center" color="textSecondary">
+          No products found.
+        </Typography>
       )}
    </Box>
 }

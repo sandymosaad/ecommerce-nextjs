@@ -79,7 +79,7 @@ export default function FeaturedAndTrendingCard({item}:FeaturedAndTrendingCardpr
           justifyContent: 'space-between' 
         }}>
           <Typography variant="h6" color="primary.main" fontWeight="bold">
-            ${item.price.toFixed(2)}
+            ${item.price}
           </Typography>
           
           <Button 
