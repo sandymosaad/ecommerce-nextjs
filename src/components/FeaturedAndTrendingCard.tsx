@@ -2,6 +2,7 @@ import { Box, Button, Typography, Paper } from '@mui/material';
 import ImageListItem from '@mui/material/ImageListItem';
 import Image from "next/image";
 import StarIcon from '@mui/icons-material/Star'; 
+import Link from "next/link";
 
 
 interface FeaturedAndTrendingCardprops {
@@ -10,8 +11,9 @@ interface FeaturedAndTrendingCardprops {
         img: string;
         title: string;
         rate?: number;
-        price: number ;
+    price: number | string;
         category?: string;
+    href?: string;
     }
 }
 export default function FeaturedAndTrendingCard({item}:FeaturedAndTrendingCardprops) {
@@ -82,19 +84,37 @@ export default function FeaturedAndTrendingCard({item}:FeaturedAndTrendingCardpr
             ${item.price}
           </Typography>
           
-          <Button 
-            variant="contained" 
-            size="small" 
-            disableElevation
-            sx={{ 
-              borderRadius: 2,
-              textTransform: 'none',
-              fontWeight: 'bold',
-              px: 2
-            }}
-          >
-            Add
-          </Button>
+          {item.href ? (
+            <Button
+              component={Link}
+              href={item.href}
+              variant="contained"
+              size="small"
+              disableElevation
+              sx={{
+                borderRadius: 2,
+                textTransform: 'none',
+                fontWeight: 'bold',
+                px: 2
+              }}
+            >
+              View
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              size="small"
+              disableElevation
+              sx={{
+                borderRadius: 2,
+                textTransform: 'none',
+                fontWeight: 'bold',
+                px: 2
+              }}
+            >
+              Add
+            </Button>
+          )}
         </Box>
       </Box>
     </ImageListItem>

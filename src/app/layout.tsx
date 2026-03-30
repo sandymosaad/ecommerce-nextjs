@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import NavbarWrapper from "@/components/NavbarWrapper";
 import { cookies } from "next/headers";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default async function RootLayout({
         <NavbarWrapper token={token} name={name} />
         <Toaster richColors position="top-right" />
         {children}
+        <Footer />
       </body>
     </html>
   );

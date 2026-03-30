@@ -45,7 +45,12 @@ export default function LandingPageCategories({itemData , title ,customComponent
           ) : (
             <FeaturedAndTrendingCard 
               key={item.img || index} 
-              item={{ img: item.img, title: item.title, rate: item.rate || 0, price: item.price || "" }} 
+              item={{
+                img: item.img,
+                title: item.title,
+                rate: item.rate || 0,
+                price: item.price || "",
+              }} 
             />
           )
         ))}

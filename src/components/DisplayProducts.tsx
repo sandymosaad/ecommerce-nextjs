@@ -6,6 +6,7 @@ import SortProducts from "./SortProducts";
 import { getProducts } from "@/services/productService";
 import { useEffect, useState } from "react";
 import {Product} from "@/interfaces/Product";
+import Link from "next/link";
 
 export default function DisplayProducts({ products, setProducts }:
    { products: Product[], setProducts: (products: Product[]) => void }) {
@@ -38,10 +39,18 @@ export default function DisplayProducts({ products, setProducts }:
       <ImageList sx={{ gap: 24, width: '100%' }} cols={cols}>
             {currentProducts.map((item, index) => (
               (
+                <Link key={item._id || index} href={`/pages/products/${item.slug || item._id}`} style={{ textDecoration: 'none' }}>
                 <FeaturedAndTrendingCard 
                   key={item._id || index} 
-                  item={{ img: item.images[0], title: item.name, rate: item.rating || 0, price: item.price || 0 }} 
+                  item={{
+                    img: item.images[0],
+                    title: item.name,
+                    rate: item.rating || 0,
+                    price: item.price || 0,
+                    href: `/pages/products/${item.slug || item._id}`,
+                  }} 
                 />
+                </Link>
               ) 
             ))}
       </ImageList>
