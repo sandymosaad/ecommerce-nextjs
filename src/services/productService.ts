@@ -1,4 +1,4 @@
-// lib/products.js
+import type { Product } from "@/interfaces/Product";
 
 function buildApiUrl(path: string) {
   const configuredBaseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "");
@@ -20,18 +20,24 @@ function buildApiUrl(path: string) {
   return `${runtimeBaseUrl.replace(/\/$/, "")}${path}`;
 }
 
-export async function getProducts() {
-
- try{
-      const res = await fetch(buildApiUrl(`/api/products`) ,{
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
+export async function getProducts(): Promise<Product[]> {
+  try {
+    const res = await fetch(buildApiUrl(`/api/products`), {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
     });
+
+    if (!res.ok) {
+      const errorBody = await res.json().catch(() => null);
+      throw new Error(errorBody?.error || `Failed to fetch products (${res.status})`);
+    }
+
     const products = await res.json();
-      return products;
-   } catch (err: any) {
+    return Array.isArray(products) ? products : [];
+  } catch (err: any) {
     console.error("Failed to fetch products:", err.message);
-   }
+    return [];
+  }
 }
 
 export async function getProductById(id: string) {

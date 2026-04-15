@@ -7,7 +7,16 @@ if (!uri) {
 }
 
 export default async function connectDB() {
-  if (mongoose.connection.readyState >= 1) return;
+  if (mongoose.connection.readyState === 1 || mongoose.connection.readyState === 2) {
+    console.log("Already connected");
+    return;
+  }
 
-  await mongoose.connect(uri);
+  try {
+    await mongoose.connect(uri);
+    console.log("MongoDB connected ✅");
+  } catch (error) {
+    console.error("MongoDB connection error ❌", error);
+    throw error;
+  }
 }

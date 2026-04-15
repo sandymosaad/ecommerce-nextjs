@@ -4,7 +4,6 @@ import { categoriesData , featuredProducts, trendingProducts } from "./staticDat
 import StarIcon from '@mui/icons-material/Star'; 
 import { TrendingDown } from "@mui/icons-material";
 import Features from "@/components/Features";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   return <>
@@ -15,6 +14,6 @@ export default function Home() {
       />
       <LandingPageCategories customComponent={"FeaturedAndTrendingCard"} itemData={trendingProducts} title={<><TrendingDown sx={{ fontSize: 35, color: '#ffc107' }} /> Trending Products</>}  />
       <Features/>
-      <Footer/>
+      
     </>;
 }

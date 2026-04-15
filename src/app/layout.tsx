@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 import NavbarWrapper from "@/components/NavbarWrapper";
 import { cookies } from "next/headers";
 import Footer from "@/components/Footer";
+import { Box } from "@mui/material";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,10 +33,24 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}  style={{ margin: 0 }}>
-        <NavbarWrapper token={token} name={name} />
+        {/* <NavbarWrapper token={token} name={name} />
         <Toaster richColors position="top-right" />
-        {children}
-        <Footer />
+        {children} */}
+        {/* <Footer /> */}
+        <Box
+          sx={{
+            minHeight: "100vh",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Box sx={{ flex: 1 }}>
+           <NavbarWrapper token={token} name={name} />
+            <Toaster richColors position="top-right" />
+            {children}
+              </Box>
+          <Footer />
+        </Box>
       </body>
     </html>
   );
