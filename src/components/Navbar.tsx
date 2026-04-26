@@ -47,14 +47,14 @@ export default function Navbar({ token, name, onMenuClick }: { token?: string, n
            href="/cart">
             <ShoppingCartIcon/>
           </Button>
-          <IconButton
+          {/* <IconButton
             color="primary"
             edge="start"
             onClick={onMenuClick}
             sx={{ display: { xs: 'flex', sm: 'none' } }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
         </Box>
       </Toolbar>
       <Stack direction="row" spacing={2} sx={{ml:4 , display: { xs: "none", sm: "flex" }, alignItems: "center" }}>

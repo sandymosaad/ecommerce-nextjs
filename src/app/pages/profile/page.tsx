@@ -8,10 +8,18 @@ import QuickActions from "@/components/QuickActions";
 export default function page() {
   return (
     <Box>
-        <Typography variant="h4">
+        <Typography variant="h4" sx={{
+          textAlign: "center",
+           mt:{
+            xs:9,
+            sm:14,
+            md:15,
+            lg:15,
+           } 
+            }}>
           My Profile
         </Typography>
-      <Box sx={{ display: "flex", width: "100%", mt: 15,
+      <Box sx={{ display: "flex", width: "100%",
          flexDirection: {
             xs: "column",
             sm: "column",
@@ -20,10 +28,29 @@ export default function page() {
          }
       }}>
 
-        <Box sx={{ mx: 'auto'}}>
+        <Box sx={{width:{
+          xs: '100%',
+          sm: '100%',
+          md: '70%',
+          lg: '30%',
+        }
+          , mx:{
+            xs: 'auto',
+            sm: 'auto',
+            md: 'auto',
+            lg: 5,
+          }}}>
           <PersonalInfoCard  />
         </Box>
-       <Box sx={{width:'70%', mx: 'auto'}}>
+       <Box sx={{
+        width:{
+          xs: '100%',
+          sm: '100%',
+          md: '70%',
+          lg: '70%',
+        },
+        mx: 'auto'
+        }}>
         <PersonalInfoEditCard/>
         <AddressCard/>
         <QuickActions/>

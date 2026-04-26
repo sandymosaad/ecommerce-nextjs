@@ -1,11 +1,9 @@
-import { T } from "@faker-js/faker/dist/airline-Dz1uGqgJ";
-import { Box, Button, Paper, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
+import PaperComponent from "./PaperComponent";
 
 export default function QuickActions() {
   return (
-    <Paper sx={{ p: 3, mt: 3, borderRadius: 3, 
-        width:'100%'
-    }}>
+    <PaperComponent>
       <Typography variant="h4" sx={{ mb: 2 }}>
         Quick Actions
       </Typography>
@@ -17,7 +15,7 @@ export default function QuickActions() {
           Continue Shopping
         </Button>
       </Box>
-    </Paper>
+      </PaperComponent>
   )
 }
 

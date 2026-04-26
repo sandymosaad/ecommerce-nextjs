@@ -11,16 +11,15 @@ export default function PersonalInfo() {
             sx={{
             p: 3,
             mt: 3,
-            //mx: "auto",
-             mx:3,  
+            mx: "auto",
             textAlign: "center",
             width:
             {
-            xs: "80%",  
-            sm: "80%",   
-            md: "70%",   
-            lg: "100%",   
-        },
+                xs: "80%",  
+                sm: "80%",   
+                md: "70%",   
+                lg: "100%",   
+            },
             borderRadius:3,
             }}
         >
