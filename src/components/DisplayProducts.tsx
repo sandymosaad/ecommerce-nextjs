@@ -8,10 +8,14 @@ import { useEffect, useState } from "react";
 import {Product} from "@/interfaces/Product";
 import Link from "next/link";
 
-export default function DisplayProducts({ products, setProducts }:
-   { products: Product[], setProducts: (products: Product[]) => void }) {
+export default function DisplayProducts(
+   { products, setProducts,queryCategory }:
+   { products: Product[],
+     setProducts: (products: Product[]) => void ,
+     queryCategory: string | null}
+   ){
    const theme = useTheme();
-    
+ 
     const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // < 600px
     const isTablet = useMediaQuery(theme.breakpoints.down('md')); // < 900px
     const cols = isMobile ? 1 : isTablet ? 2 : 4;
@@ -19,13 +23,22 @@ export default function DisplayProducts({ products, setProducts }:
       const [page, setPage] = useState(1);
       const itemsPerPage = 8;
 
+      if (queryCategory) {
+        const filteredProducts = products.filter((product) =>
+          product.category?.toLowerCase() === queryCategory.toLowerCase()
+        );
+        if (filteredProducts.length !== products.length) {
+          setProducts(filteredProducts);
+        }
+      }
     useEffect(() => {
         async function fetchProducts() {
             const data = await getProducts();
+
             setProducts(data || []);
         }
         fetchProducts();
-    }, []);
+    }, [queryCategory]);
 
   const startIndex = (page - 1) * itemsPerPage;
   const currentProducts = products.slice(startIndex, startIndex + itemsPerPage);

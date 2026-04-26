@@ -2,7 +2,7 @@
 import { Box, Typography, Button, Checkbox, FormControlLabel } from "@mui/material";
 import { useState, useEffect } from "react";
 import {Product} from "@/interfaces/Product";
-const categories = ["Electronics", "Fashion", "Home", "Sports"];
+const categories = ["Electronics", "Clothing", "Books", "Other"];
 
 export default function Filter({ products, setProducts }: { products: Product[], setProducts: (products: Product[]) => void }) {
   const [originalProducts, setOriginalProducts] = useState<Product[]>([]);
