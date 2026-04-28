@@ -42,7 +42,12 @@ export async function POST(req: NextRequest) {
       sameSite: "strict",
       maxAge: 60 * 60 * 24 * 7,
     });
-
+    response.cookies.set("id", existingUser._id.toString(), {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      maxAge: 60 * 60 * 24 * 7,
+    });
     response.cookies.set("name", existingUser.name, {
       secure: true,
       sameSite: "strict",

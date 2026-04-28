@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import { Toaster } from "sonner";
 import NavbarWrapper from "@/components/NavbarWrapper";
 import { cookies } from "next/headers";
 import Footer from "@/components/Footer";
 import { Box } from "@mui/material";
-
+import { UserProvider } from "@/context/UserContext";
+import User from "@/models/User";
+import connectDB from "@/lib/mongodb";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,15 +29,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
    const cookiesStore = await cookies()
+   //console.log("Cookies in layout:", cookiesStore.getAll());
     const token = cookiesStore.get("token")?.value;
     const name = cookiesStore.get("name")?.value;
+    const id = cookiesStore.get("id")?.value;
+    
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}  style={{ margin: 0 }}>
-        {/* <NavbarWrapper token={token} name={name} />
-        <Toaster richColors position="top-right" />
-        {children} */}
-        {/* <Footer /> */}
         <Box
           sx={{
             minHeight: "100vh",
@@ -45,9 +45,16 @@ export default async function RootLayout({
           }}
         >
           <Box sx={{ flex: 1 }}>
-           <NavbarWrapper token={token} name={name} />
+            <UserProvider 
+            //value={{ token: null, name: null, id: null, email: null, role: null }}
+            value={{ token, name, id, email:null, role:null}}
+            >
+           <NavbarWrapper 
+           //token={token} name={name}
+            />
             <Toaster richColors position="top-right" />
-            {children}
+            {children }
+            </UserProvider>
               </Box>
           <Footer />
         </Box>

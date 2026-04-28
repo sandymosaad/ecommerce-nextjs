@@ -1,11 +1,32 @@
 import { Avatar, Box, Button, Container, Paper, Typography } from "@mui/material";
 import PersonalInfoCard from "@/components/PersonalInfoCard";
 import PersonalInfoEditCard from "@/components/PersonalInfoEditCard";
-import { A } from "@faker-js/faker/dist/airline-Dz1uGqgJ";
 import AddressCard from "@/components/AddressCard";
 import QuickActions from "@/components/QuickActions";
+import { useUserContext } from "@/context/UserContext";
+import mongoose from "mongoose";
+import connectDB from "@/lib/mongodb";
+import User from "@/models/User";
+import { cookies } from "next/headers";
 
-export default function page() {
+// i need to get the user info for personal page profile
+interface userContextType{
+  email: string | null;
+  name: string | null;
+}
+export default async function page() {
+   // const { email, name }:userContextType = useUserContext();
+  const cookiesStore = await cookies();
+  const id = cookiesStore.get("id")?.value;
+
+  let user = null;
+
+  if (id && mongoose.Types.ObjectId.isValid(id)) {
+    await connectDB();
+    user = await User.findById(id).lean();
+    console.log("User fetched in page component:", user); // Debugging log
+  }
+
   return (
     <Box>
         <Typography variant="h4" sx={{
@@ -40,7 +61,7 @@ export default function page() {
             md: 'auto',
             lg: 5,
           }}}>
-          <PersonalInfoCard  />
+          <PersonalInfoCard user={user}  />
         </Box>
        <Box sx={{
         width:{
@@ -51,8 +72,8 @@ export default function page() {
         },
         mx: 'auto'
         }}>
-        <PersonalInfoEditCard/>
-        <AddressCard/>
+        <PersonalInfoEditCard user={user}/>
+        <AddressCard user={user}/>
         <QuickActions/>
        </Box>
 

@@ -5,8 +5,9 @@ import CallIcon from "@mui/icons-material/Call";
 
 import { Box, Button, Paper, Typography } from "@mui/material";
 import PaperComponent from "./PaperComponent";
+import {User} from "@/interfaces/User";
 
-export default function AddressCard() {
+export default function AddressCard({user}: {user: User | null}) {
   return (
     <PaperComponent>
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -20,7 +21,7 @@ export default function AddressCard() {
       </Box>
       <Box sx={{ mt: 2 ,backgroundColor:'#f5f5f5', p:2, borderRadius:2}}>
           <Box sx={{ mt: 2, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <Typography variant="h6">NAME</Typography>
+              <Typography variant="h6">{user?.name}</Typography>
               <EditIcon />
           </Box>
 
