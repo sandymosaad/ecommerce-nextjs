@@ -36,7 +36,7 @@ export default function Navbar({ token, name, onMenuClick }: { token?: string, n
             }
           {token &&<>
           <Button color="primary" component={LinkComponent} 
-          href="pages/profile" 
+          href="/pages/profile" 
           sx={{  gap: 2 , display: { xs: "none", sm: "flex" }}}>
             <PersonIcon/> 
              {name}  

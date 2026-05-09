@@ -35,7 +35,7 @@ export default function Login() {
         if (role === "admin") {
         router.push("/admin-dashboard");
         } else {
-        router.push("/products");
+        router.push("/pages/products");
         }
 
     } catch (err: any) {

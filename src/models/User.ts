@@ -35,4 +35,14 @@ const UserSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
+// Add optional contact/address fields used by the frontend
+UserSchema.add({
+  phone: { type: String },
+  street: { type: String },
+  city: { type: String },
+  state: { type: String },
+  zip: { type: String },
+  country: { type: String }
+});
+
 export default mongoose.models.User || mongoose.model("User", UserSchema);

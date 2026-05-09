@@ -30,7 +30,7 @@ export default async function PersonalInfo({ user }: { user: UserInterface | nul
 
             <Typography variant="h6">{user?.email || "sandy@gmail.com"}</Typography>
 
-            <Box
+            {/* <Box
             sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -48,7 +48,7 @@ export default async function PersonalInfo({ user }: { user: UserInterface | nul
                 <LogoutIcon sx={{px:1}} />
                    Logout
                 </Button>
-            </Box>
+            </Box> */}
         </Paper>
      </Box>
   )

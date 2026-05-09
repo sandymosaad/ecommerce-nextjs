@@ -3,19 +3,13 @@ import PersonalInfoCard from "@/components/PersonalInfoCard";
 import PersonalInfoEditCard from "@/components/PersonalInfoEditCard";
 import AddressCard from "@/components/AddressCard";
 import QuickActions from "@/components/QuickActions";
-import { useUserContext } from "@/context/UserContext";
 import mongoose from "mongoose";
 import connectDB from "@/lib/mongodb";
 import User from "@/models/User";
 import { cookies } from "next/headers";
 
-// i need to get the user info for personal page profile
-interface userContextType{
-  email: string | null;
-  name: string | null;
-}
+
 export default async function page() {
-   // const { email, name }:userContextType = useUserContext();
   const cookiesStore = await cookies();
   const id = cookiesStore.get("id")?.value;
 
